@@ -12,7 +12,7 @@ body {
 </head>
 <body>
 <script>
-const obj=[ {
+var obj=[ {
 name: 1,
 items: [{
 name: 2,
