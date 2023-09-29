@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,14 +13,15 @@ body {
 <body>
 <script>
 var obj= [{
-"name": 1,
-"items": [{
-"name": 2,
-"items": [{ "name": 3 }, { "name": 4 }]
-}, {
-"name": 5,
-"items": [{ "name": 6 }]
-}]
+name: 1,
+items: [
+		{name: 2,
+		items: [{ name: 3 }, { name: 4 }]},
+{name: 5,
+items: []}, 
+{name: 6,
+items: []},
+]
 }];
 
 function buildTree(tree, prefix) {
@@ -28,13 +30,16 @@ function buildTree(tree, prefix) {
   var result = '';
   tree.forEach(function(e, i) {
     var lastNode = i == tree.length -1;
-    result += prefix + (lastNode ? '└─' : '├─') + ' ' + e.name + '\n';
+    result += prefix + (lastNode ? '└──' : '├──') + ' ' + e.name + '\n';
     if (e.items)
       result += buildTree(e.items, prefix + (lastNode ? ' ' : '│') + ' ');
+
   });
   return result;
 }
+
 document.body.innerHTML = buildTree(obj).split('\n').join('<br/>');
+
 </script>
 </body>
 </html>
