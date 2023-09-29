@@ -1,4 +1,3 @@
-
 !doctype html>
 <html lang="en">
 <head>
@@ -35,8 +34,6 @@ function buildTree(tree, prefix) {
   });
   return result;
 }
-
-
 document.body.innerHTML = buildTree(obj).split('\n').join('<br/>');
 </script>
 </body>
