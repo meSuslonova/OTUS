@@ -23,5 +23,4 @@ var obj= [{
       });
       return result;
     }
-    
-    console.log(buildTree(obj));
+console.log(buildTree(obj));
