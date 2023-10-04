@@ -16,7 +16,7 @@ var obj= [{
       var result = '';
       tree.forEach(function(e, i) {
         var lastNode = i == tree.length -1;
-        result += prefix + (lastNode ? '└──' : '├─') + ' ' + e.name + '\n';
+        result += prefix + (lastNode ? '└──' : '├──') + ' ' + e.name + '\n';
         if (e.items)
           result += buildTree(e.items, prefix + (lastNode ? ' ' : '│') + ' ');
     
