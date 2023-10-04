@@ -32,7 +32,7 @@ function buildTree(tree, prefix) {
     var lastNode = i == tree.length -1;
     result += prefix + (lastNode ? 'L--' : '+--') + ' ' + e.name + '\n';
     if (e.items)
-      result += buildTree(e.items, prefix + (lastNode ? ' ' : '¦') + ' ');
+      result += buildTree(e.items, prefix + (lastNode ? ' ' : 'Â¦') + ' ');
 
   });
   return result;
