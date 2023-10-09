@@ -1,0 +1,30 @@
+var assert = require('node:assert/strict');
+const { error } = require('node:console');
+var obj1 = {
+    a: {
+    b: 1,
+    },
+    };
+var obj2 = {
+    a: {
+    b: 2,
+    },
+    };
+var obj3 = {
+    a: {
+    b: 1,
+    },
+    };
+
+function deepEqual(x,y){
+  var res = assert.deepStrictEqual(actual, expected[error]);
+  return res;
+};
+
+
+console.log(deepEqual(obj1, obj1));
+// OK
+console.log(deepEqual(obj1, obj2));
+// false
+console.log(deepEqual(obj1, obj3));
+// OK
