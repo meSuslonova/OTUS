@@ -52,16 +52,16 @@ tree(dirPath, depth);
 
 
 //Результат вывода
-//node treeNode.js C:\Users\User\projects\node
+//node treeNode.js C:\Users\User\projects\node ---depth 2
 //C:\Users\User\projects\node/
 //│ ├── index.js
+//│ C:\Users\User\projects\node\errors/
 //│ C:\Users\User\projects\node\domain/
 //│ C:\Users\User\projects\node\cluster/
-//│ C:\Users\User\projects\node\errors/
 // C:\Users\User\projects\node\worker/
+//│ │ ├── counter.js
+//│  └── try-catch.js
 //│ │ ├── error.js
 //│ │ ├── flow.js
 //│  └── run.js
 //│  └── index.js
-//│ │ ├── counter.js
-//│  └── try-catch.js
