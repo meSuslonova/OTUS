@@ -30,8 +30,8 @@ function tree(dirPath, depth = Infinity, indent = '') {
           if (fileStats.isDirectory()) {
             tree(filePath, depth - 1, nestedIndent);            
           } else {
-            console.log(indent + dirPath);
-            console.log(nestedIndent + prefix + ' ' + file);            
+            console.log(indent + prefix+ ' ' +dirPath);
+            console.log(nestedIndent + prefix + ' ' + file);               
           }
         });
       });
@@ -53,17 +53,17 @@ tree(dirPath, depth);
 
 //Результат вывода
 //node treeNode.js C:\Users\User\projects\node --depth 2
-//C:\Users\User\projects\node
+//├── C:\Users\User\projects\node
 //│├── index.js
-//│C:\Users\User\projects\node\domain
+//│├── C:\Users\User\projects\node\domain
 //││├── error.js
-//│C:\Users\User\projects\node\domain
+//│└── C:\Users\User\projects\node\domain
 //│ └── run.js
-//│C:\Users\User\projects\node\domain
+//│├── C:\Users\User\projects\node\domain
 //││├── flow.js
-//│C:\Users\User\projects\node\cluster
+//│└── C:\Users\User\projects\node\cluster
 //│ └── index.js
-//│C:\Users\User\projects\node\errors
+//│├── C:\Users\User\projects\node\errors
 //││├── counter.js
-//│C:\Users\User\projects\node\errors
+//│└── C:\Users\User\projects\node\errors
 //│ └── try-catch.js
