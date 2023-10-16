@@ -38,6 +38,6 @@ var obj3 = {
 console.log(deepEqual(obj1, obj1));
 // OK
 console.log(deepEqual(obj1, obj2));
-// Error: a.b
+// false
 console.log(deepEqual(obj1, obj3));
 // OK
