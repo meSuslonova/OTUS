@@ -16,7 +16,7 @@ var obj3 = {
   },
 };
 
-const deepEqual = (a, b) => {
+const deepEqual = (a, b, path = '') => {
   if (a === b) {
     return 'OK';
   }
@@ -27,33 +27,28 @@ const deepEqual = (a, b) => {
     typeof a !== 'object' ||
     typeof b !== 'object'
   ) {
-    return false;
+    return `Error: ${path}`;
   }
 
   const aKeys = Object.keys(a);
   const bKeys = Object.keys(b);
 
   if (aKeys.length !== bKeys.length) {
-    return false;
+    return `Error: ${path}`;
   }
 
-  for (let i = 0; i < aKeys.length; i += 1) {
+  for (let i = 0; i < aKeys.length; i++) {
     const key = aKeys[i];
+    const newPath = path ? `${path}.${key}` : key;
 
-    if (
-      !b.hasOwnProperty(key) ||
-      !deepEqual(a[key], b[key])
-    ) {
-      return false;
+    if (!b.hasOwnProperty(key) || deepEqual(a[key], b[key], newPath) !== 'OK') {
+      return `Error: ${newPath}`;
     }
   }
 
   return 'OK';
 };
 
-console.log(deepEqual(obj1, obj1)); 
-// OK
-console.log(deepEqual(obj1, obj2)); 
-// false
-console.log(deepEqual(obj1, obj3)); 
-// OK
+console.log(deepEqual(obj1, obj1)); // OK
+console.log(deepEqual(obj1, obj2)); // Error: a
+console.log(deepEqual(obj1, obj3)); // OK
