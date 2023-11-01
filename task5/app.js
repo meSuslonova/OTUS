@@ -1,4 +1,4 @@
-import { html, css, LitElement } from 'lit';
+import { html, css, LitElement } from 'lit-element';
 
 class MyTree extends LitElement {
   static styles = css`
@@ -40,17 +40,13 @@ class MyLeaf extends LitElement {
   render() {
     return html`
       <li>${this.leafData.name}</li>
-      ${
-        this.leafData.items
-          ? html`
-              <ul>
-                ${this.leafData.items.map(
-                  (item) => html`<my-leaf .leafData=${item}></my-leaf>`
-                )}
-              </ul>
-            `
-          : ''
-      }
+      ${this.leafData.items
+        ? html`
+            <ul>
+              ${this.leafData.items.map((item) => html`<my-leaf .leafData=${item}></my-leaf>`)}
+            </ul>
+          `
+        : ''}
     `;
   }
 }
