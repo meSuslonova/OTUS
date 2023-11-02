@@ -35,17 +35,19 @@ class MyTree extends LitElement {
   static properties = {
     treeData: { type: Array },
   };
-  treeData = [];
+
   render() {
     return html`
       <ul class="tree">
-        ${this.treeData.map(
+        ${this.treeData && Array.isArray(this.treeData)
+        ? this.treeData.map(
           (item) => html`
-            <li>
-              <my-leaf .leafData=${item}></my-leaf>
-            </li>
-          `
-        )}
+                <li>
+                  <my-leaf .leafData=${item}></my-leaf>
+                </li>
+              `
+        )
+        : html``}
       </ul>
     `;
   }
