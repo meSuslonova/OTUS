@@ -1,35 +1,9 @@
-import { html, css, LitElement } from 'lit-element';
-
-class MyTree extends LitElement {
-  static styles = css`
-    :host {
-      display: block;
-    }
-
-    ul {
-      list-style-type: none;
-      padding-left: 20px;
-    }
-  `;
-
-  static properties = {
-    treeData: { type: Object },
-  };
-
-  render() {
-    return html`
-      <ul>
-        ${this.treeData.items.map((item) => html`<my-leaf .leafData=${item}></my-leaf>`)}
-      </ul>
-    `;
-  }
-}
-customElements.define('my-tree', MyTree);
+import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
 
 class MyLeaf extends LitElement {
   static styles = css`
-    :host {
-      display: block;
+    .leaf {
+      margin-left: 10px;
     }
   `;
 
@@ -39,15 +13,42 @@ class MyLeaf extends LitElement {
 
   render() {
     return html`
-      <li>${this.leafData.name}</li>
+      <div class="leaf">${this.leafData.name}</div>
       ${this.leafData.items
         ? html`
-            <ul>
-              ${this.leafData.items.map((item) => html`<my-leaf .leafData=${item}></my-leaf>`)}
-            </ul>
-          `
+          <my-tree .treeData=${this.leafData.items}></my-tree>
+        `
         : ''}
     `;
   }
 }
+
 customElements.define('my-leaf', MyLeaf);
+
+class MyTree extends LitElement {
+  static styles = css`
+    .tree {
+      margin-left: 20px;
+    }
+  `;
+
+  static properties = {
+    treeData: { type: Array },
+  };
+  treeData = [];
+  render() {
+    return html`
+      <ul class="tree">
+        ${this.treeData.map(
+          (item) => html`
+            <li>
+              <my-leaf .leafData=${item}></my-leaf>
+            </li>
+          `
+        )}
+      </ul>
+    `;
+  }
+}
+
+customElements.define('my-tree', MyTree);
