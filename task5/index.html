@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tree App</title>
+</head>
+
+<body>
+    <!-- Здесь мы передаём данные в компонент my-tree -->
+    <my-tree id="my-tree-element"></my-tree>
+
+    <script type="module">
+        import { css, html, LitElement } from 'https://unpkg.com/lit@2.0.2?module';
+
+        class MyLeaf extends LitElement {
+            static styles = css`
+        .leaf {
+          margin-left: 16px;
+        }
+      `;
+
+            static properties = {
+                id: { type: Number },
+            };
+
+            render() {
+                return html`
+          <div class="leaf">Leaf ${this.id}</div>
+        `;
+            }
+        }
+
+        customElements.define('my-leaf', MyLeaf);
+
+        class MyTree extends LitElement {
+            static styles = css`
+        .tree {
+          margin-left: 16px;
+        }
+      `;
+
+            static properties = {
+                data: { type: Object },
+            };
+
+            render() {
+                if (!this.data) {
+                    return html``;
+                }
+
+                return html`
+          <div class="tree">Tree ${this.data.id}
+            ${this.data.items.map((item) => html`
+              <my-leaf .id="${item.id}"></my-leaf>
+              ${item.items ? html`
+                <my-tree .data="${item}"></my-tree>
+              ` : ''}
+            `)}
+          </div>
+        `;
+            }
+        }
+
+        customElements.define('my-tree', MyTree);
+
+        // Добавим пример данных
+        const data = {
+            "id": 1,
+            "items": [{
+                "id": 2,
+                "items": [{ "id": 3 }]
+            }]
+        };
+
+        // Обратите внимание: мы находим элемент, только после того, как DOM готов
+        document.addEventListener('DOMContentLoaded', () => {
+            const myTreeElement = document.getElementById('my-tree-element');
+            myTreeElement.data = data;
+        });
+
+    </script>
+</body>
+
+</html>
